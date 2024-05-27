@@ -1,11 +1,16 @@
 const express = require('express');
+const path = require('path')
 
 const hostname = 'localhost';
 const port = 3000;
 
 const app = express();
 
-app.use(express.static(__dirname + '/public'));
+app.set('view engine', 'pug')
+app.set('views', path.join(__dirname, 'views'))
+// app.use(express.bodyParser());
+// app.use(express.methodOverride());
+app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use((req, res) => {
 //     console.log(req.headers);
@@ -15,7 +20,8 @@ app.use(express.static(__dirname + '/public'));
 // });
 
 app.get('/', (req,res) => {
-    res.end('<html><body><h1>This is an Express Server</h1></body></html>');
+    res.render('index')
+    // res.end('<html><body><h1>This is an Express Server</h1></body></html>');
 })
 
 app.get('/message', (req,res) => {
