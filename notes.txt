@@ -1,5 +1,10 @@
 purg tracker steps
 
+authentication to keep the mongodb safe after 'launch'
+    nav bar with log-in log-out - bootstrap
+    add auth
+
+
 html layout
     delete lines
     nav bar to sign in
@@ -9,9 +14,6 @@ express server that updates to mongodb
     add uuid
     CRUD to add and delete items on the list
     
-
-authentication to keep the mongodb safe after 'launch'
-
 create an atlas remote db and launch website
 
 general question: how to send the info from the db so I can access it?
