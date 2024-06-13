@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
+const { Schema } = mongoose;
 const listRoutes = require('./routes/lists');
 const session = require('express-session');
 const passport = require('passport');
@@ -12,10 +13,32 @@ const hostname = 'localhost';
 const port = 3000;
 
 app.set('view engine', 'ejs')
-app.set('views', path.join(__dirname, 'views'))
+// app.set('views', path.join(__dirname, 'views'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+main()
+.then(() => {
+    console.log("CONNECTION OPEN")
+})
+.catch(err => {
+    console.log("OH NO ERROR")
+    console.log(err)
+})
+
+async function main() {
+    await mongoose.connect('mongodb://127.0.0.1:27017/purgList')
+}
+
+const PurgSchema = new Schema({
+    model: String,
+    qty: Number
+})
+
+const Purg = mongoose.model("Purg", PurgSchema)
+
+// const fridge = new Purg({model: "LMXS7859S", qty: "1"})
+// fridge.save()
 
 // app.use(session())
 // app.use(passport.initialize());
