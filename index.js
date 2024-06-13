@@ -6,7 +6,7 @@ const listRoutes = require('./routes/lists');
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
-const User = require('./model/user');
+const User = require('./models/user');
 
 const hostname = 'localhost';
 const port = 3000;
@@ -17,14 +17,14 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 
-app.use(session())
-app.use(passport.initialize());
-// passport.session allows login to persist across pages
-app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
+// app.use(session())
+// app.use(passport.initialize());
+// // passport.session allows login to persist across pages
+// app.use(passport.session());
+// passport.use(new LocalStrategy(User.authenticate()));
 
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser())
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser())
 
 const sessionOptions = {secret: 'thisisnotagoodsecret', resave: false, saveUninitialized: false}
 app.use(session(sessionOptions));
